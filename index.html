@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Thomas' Birthday 🎉</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
@@ -328,7 +329,7 @@
 
   setInterval(() => {
     createFirework(random(0, w), random(0, h/2));
-  }, 1000);
+  }, 1500);
 
   loop();
 
@@ -350,7 +351,7 @@
     const intervalId = setInterval(() => {
       createFirework(x + random(-30,30), y + random(-30,30));
       count++;
-      if(count > 5) clearInterval(intervalId);
+      if(count > 6) clearInterval(intervalId);
     }, 400);
   }, 5500);
 
@@ -443,9 +444,8 @@
         fr: "Quel monument américain célèbre est connu sous le nom de « Statue de la Liberté » ?"
       },
       options: [
-        { text: { en:"Mount Rushmore", zh:"拉什莫尔山", fr:"Mont Rushmore"}, points: {
-lincoln: [1]} },
-{ text: { en:"Statue of Liberty", zh:"自由女神像", fr:"Statue de la Liberté"}, points: {amelia: [1]} },
+        { text: { en:"Mount Rushmore", zh:"拉什莫尔山", fr:"Mont Rushmore"}, points: {lincoln: [1]} },
+        { text: { en:"Statue of Liberty", zh:"自由女神像", fr:"Statue de la Liberté"}, points: {amelia: [1]} },
 { text: { en:"Golden Gate Bridge", zh:"金门大桥", fr:"Pont du Golden Gate"}, points: {napoleon: [1]} },
 ]
 }
@@ -477,14 +477,7 @@ const resultElement = document.getElementById('result');
 resultElement.style.display = 'block';
 resultElement.innerHTML = <h3>${messages[currentLang].completed}</h3> <p>${messages[currentLang].resultMessage}</p> <blockquote> ${messages[currentLang].resultQuote} </blockquote> <div class="btn-center"> <button onclick="restartQuiz()">${messages[currentLang].restartBtn}</button> </div> ;
 }
-function restartQuiz() {
-currentQuestion = 0;
-answers = [];
-document.getElementById('next-btn').disabled = false;
-document.getElementById('quiz-content').innerHTML = '';
-renderQuestion();
-}
 document.getElementById('next-btn').onclick = nextQuestion;
 renderQuestion();
 </script>
-</body> </html>
+</body> </html> 
