@@ -1,27 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Thomas 黄钧正 | Joyeux Anniversaire</title>
+  <title>Thomas | Joyeux Anniversaire</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
     html, body {
       margin: 0; padding: 0; height: 100%;
-      background: #0a0a0f;
-      color: #a0e8ff;
-      font-family: 'Orbitron', monospace, monospace;
-      overflow-x: hidden;
+      background: linear-gradient(135deg, #1e90ff, #ffa500, #ffff66);
+      color: #222;
+      font-family: 'Baloo 2', cursive, sans-serif;
       user-select: none;
-    }
-    body {
-      background:
-        linear-gradient(90deg, #00101f 0%, #00101f 50%, #000a0d 100%);
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 40px 15px 150px;
+      padding: 40px 10px 150px;
       min-height: 100vh;
-      position: relative;
     }
     #fireworks {
       position: fixed;
@@ -39,77 +34,40 @@
       text-align: center;
     }
     h1 {
-      font-size: 3em;
-      margin-bottom: 0.3em;
-      letter-spacing: 2px;
-      text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
+      font-size: 3.2em;
+      margin-bottom: 0.4em;
+      letter-spacing: 3px;
+      color: #0c2d86;
+      text-shadow: 1px 1px 3px #ffa500aa;
       user-select: text;
     }
-    h1 span {
-      margin-left: 10px;
-      font-size: 1.1em;
-      vertical-align: middle;
-    }
     .lang-buttons button {
-      background: transparent;
-      border: 1px solid #0ff;
-      color: #0ff;
-      padding: 6px 14px;
+      background: #ffb347;
+      border: none;
+      color: #222;
+      padding: 8px 20px;
       margin: 0 8px;
-      font-size: 1.1em;
-      border-radius: 6px;
+      font-size: 1.2em;
+      border-radius: 30px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.25s ease;
       user-select: none;
+      font-weight: 600;
+      box-shadow: 0 2px 6px #ffa500cc;
     }
     .lang-buttons button[aria-pressed="true"],
     .lang-buttons button:hover {
-      background-color: #0ff;
-      color: #001011;
+      background-color: #1e90ff;
+      color: #fff;
+      box-shadow: 0 4px 12px #1e90ffcc;
     }
-    #countdown {
-      font-size: 1.4em;
-      margin: 0.8em 0 1.5em;
-      letter-spacing: 1px;
-      text-shadow: 0 0 8px #0ffaaaff;
-      user-select: text;
-    }
-    #message {
-      font-size: 1.3em;
-      line-height: 1.5em;
-      max-width: 700px;
-      margin: 0 auto 50px;
-      min-height: 70px;
-      white-space: pre-line;
-      text-shadow:
-        0 0 5px #0ff,
-        0 0 10px #0ff,
-        0 0 20px #0ff80;
-      user-select: text;
-    }
-    /* 反乌托邦名言打字机效果 */
-    #quote {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1.5em;
-      max-width: 700px;
-      margin: 1em auto 50px;
-      color: #ff6f61;
-      border-left: 3px solid #ff6f61;
-      padding-left: 15px;
-      white-space: pre-wrap;
-      min-height: 90px;
-      letter-spacing: 0.1em;
-      text-shadow: 0 0 10px #ff6f61;
-      user-select: text;
-    }
-
     /* 小游戏区域 */
     #quiz {
-      background: #00111a99;
-      border-radius: 14px;
-      padding: 24px 30px;
-      color: #a0e8ff;
-      box-shadow: 0 0 16px #0ff;
+      background: #fff7e6;
+      border-radius: 20px;
+      padding: 28px 32px;
+      color: #222;
+      box-shadow: 0 0 30px #ffb347cc;
       max-width: 700px;
       margin: auto;
       text-align: left;
@@ -117,89 +75,90 @@
     }
     #quiz h2 {
       text-align: center;
-      color: #0ff;
-      margin-bottom: 14px;
-      font-size: 1.9em;
-      text-shadow: 0 0 8px #0ff;
+      color: #1e90ff;
+      margin-bottom: 20px;
+      font-size: 2em;
+      font-weight: 700;
+      text-shadow: 0 0 6px #ffb347cc;
     }
     .question {
-      font-size: 1.2em;
-      margin-bottom: 14px;
+      font-size: 1.25em;
+      margin-bottom: 18px;
+      font-weight: 600;
     }
     .options {
       list-style: none;
       padding: 0;
     }
     .options li {
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
     .options button {
       width: 100%;
-      background: #002233dd;
+      background: #ffa500dd;
       border: none;
-      padding: 12px 18px;
-      color: #0ff;
-      font-size: 1.05em;
-      border-radius: 10px;
+      padding: 14px 20px;
+      color: #0c2d86;
+      font-size: 1.15em;
+      border-radius: 35px;
       cursor: pointer;
+      font-weight: 700;
       transition: background-color 0.3s, color 0.3s;
       text-align: left;
+      box-shadow: 0 3px 10px #ffb347cc;
       user-select: none;
     }
     .options button:hover {
-      background: #00ffffbb;
-      color: #000;
+      background: #1e90ff;
+      color: #fff;
+      box-shadow: 0 4px 15px #1e90ffcc;
     }
     #result {
-      margin-top: 30px;
-      padding: 18px 24px;
-      background: #200000cc;
-      border-radius: 14px;
-      color: #ff6f61;
-      font-size: 1.3em;
-      line-height: 1.4em;
-      box-shadow: 0 0 15px #ff6f61cc;
+      margin-top: 36px;
+      padding: 24px 30px;
+      background: #ffd27f;
+      border-radius: 20px;
+      color: #1e90ff;
+      font-size: 1.35em;
+      line-height: 1.5em;
+      box-shadow: 0 0 30px #1e90ff99;
       display: none;
       user-select: text;
+      font-weight: 700;
     }
     #result h3 {
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
     #result blockquote {
-      margin-top: 12px;
+      margin-top: 14px;
       font-style: italic;
-      color: #ffa899;
-      border-left: 3px solid #ff6f61;
-      padding-left: 10px;
+      color: #1053a3;
+      border-left: 5px solid #1e90ff;
+      padding-left: 14px;
+      user-select: text;
     }
     .btn-center {
       text-align: center;
-      margin-top: 24px;
+      margin-top: 28px;
     }
     .btn-center button {
-      background: #ff6f61;
-      color: #200000;
-      padding: 12px 26px;
-      font-size: 1.15em;
+      background: #1e90ff;
+      color: #fff;
+      padding: 14px 32px;
+      font-size: 1.3em;
       border: none;
-      border-radius: 14px;
+      border-radius: 35px;
       cursor: pointer;
+      font-weight: 700;
       user-select: none;
+      box-shadow: 0 6px 20px #1e90ffcc;
       transition: background-color 0.3s ease;
     }
     .btn-center button:hover {
-      background: #ff503f;
-      color: white;
-    }
-    /* 打字机光标闪烁 */
-    @keyframes blink {
-      0%, 50%, 100% { border-color: transparent }
-      25%, 75% { border-color: #ff6f61 }
-    }
-    #quote.typing {
-      border-right: 3px solid #ff6f61;
-      animation: blink 1s steps(1) infinite;
+      background: #ffb347;
+      color: #222;
+      box-shadow: 0 6px 20px #ffb347cc;
     }
   </style>
 </head>
@@ -213,7 +172,7 @@
     </div>
 
     <h1 id="title">
-      Happy Birthday, Thomas Huang Junzheng! 
+      Happy Birthday, Thomas! 
       <span aria-label="French flag" role="img">🇫🇷</span>
       <span aria-label="USA flag" role="img">🇺🇸</span>
     </h1>
@@ -236,12 +195,11 @@
   </div>
 
 <script>
-  // 烟花+断续电流风格动画
   const canvas = document.getElementById('fireworks');
   const ctx = canvas.getContext('2d');
   let w, h;
   let particles = [];
-
+  
   function resizeCanvas() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
@@ -249,39 +207,35 @@
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
-  function random(min,max) {
-    return Math.random()*(max-min)+min;
-  }
-
-  // 电流闪烁背景线
+  function random(min,max){return Math.random()*(max-min)+min;}
+  
   function drawElectricLines(){
-    const lineCount = 5;
-    ctx.strokeStyle = '#0ff4';
-    ctx.lineWidth = 1.2;
-    for(let i=0; i<lineCount; i++){
+    const lineCount=5;
+    ctx.strokeStyle='#1e90ff44';
+    ctx.lineWidth=1.4;
+    for(let i=0;i<lineCount;i++){
       ctx.beginPath();
-      let y = (h/lineCount)*i + random(-5,5);
+      let y=(h/lineCount)*i+random(-5,5);
       ctx.moveTo(0,y);
-      for(let x=0; x<w; x+=20){
-        let offsetY = Math.sin((x/10) + Date.now()/200 + i)*7 + random(-2,2);
-        ctx.lineTo(x, y + offsetY);
+      for(let x=0;x<w;x+=20){
+        let offsetY=Math.sin((x/10)+Date.now()/200+i)*7+random(-2,2);
+        ctx.lineTo(x,y+offsetY);
       }
       ctx.stroke();
     }
   }
 
-  function createFirework() {
-    const x = random(0, w);
-    const y = random(0, h/2);
+  function createFirework(x, y){
     const count = 80;
     for(let i=0; i<count; i++){
       particles.push({
-        x, y,
-        vx: random(-3,3),
-        vy: random(-3,3),
+        x: x,
+        y: y,
+        vx: random(-3, 3),
+        vy: random(-3, 3),
         alpha: 1,
-        radius: random(1,3),
-        color: `hsl(${Math.floor(random(0,360))}, 100%, 70%)`
+        radius: random(1, 3),
+        color: `hsl(${Math.floor(random(0, 360))}, 100%, 70%)`
       });
     }
   }
@@ -289,13 +243,13 @@
   function updateFireworks(){
     ctx.clearRect(0,0,w,h);
     drawElectricLines();
-    particles.forEach((p,i)=>{
+    particles.forEach((p, i) => {
       p.x += p.vx;
       p.y += p.vy;
       p.alpha -= 0.01;
-      if(p.alpha <= 0) particles.splice(i,1);
+      if (p.alpha <= 0) particles.splice(i, 1);
       ctx.beginPath();
-      ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
       ctx.fillStyle = p.color;
       ctx.globalAlpha = p.alpha;
       ctx.fill();
@@ -307,31 +261,40 @@
     updateFireworks();
     requestAnimationFrame(loop);
   }
-  setInterval(createFirework, 800);
+
+  setInterval(() => {
+    createFirework(random(0, w), random(0, h/2)); // 随机生成烟花
+  }, 800);
+
   loop();
+
+  // 鼠标点击触发烟花
+  canvas.addEventListener('click', (e) => {
+    createFirework(e.clientX, e.clientY);
+  });
 
   // 倒计时显示
   let currentLang = 'en';
   const birthdayMonth = 11;
   const birthdayDay = 2;
 
-  function updateCountdown() {
+  function updateCountdown(){
     let year = (new Date()).getFullYear();
     let birthday = new Date(year, birthdayMonth, birthdayDay);
     let now = new Date();
-    if(now > birthday) birthday.setFullYear(year +1);
+    if (now > birthday) birthday.setFullYear(year + 1);
     let diff = birthday - now;
-    let days = Math.floor(diff/(1000*60*60*24));
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
     let text = messages[currentLang].countdown.replace('X', days);
     document.getElementById('countdown').textContent = text;
   }
+
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // 三语内容
   const messages = {
     en: {
-      title: "Happy Birthday, Thomas Huang Junzheng!",
+      title: "Happy Birthday, Thomas!",
       message: "Wishing you a sky full of dreams, a mind full of ideas, and a heart full of joy — with a touch of 🇫🇷 and 🇺🇸 spirit!",
       countdown: "Countdown: X day(s) to December 2nd 🎉",
       quote: "“What’s done is done.”",
@@ -341,7 +304,7 @@
       restartBtn: "Retake Quiz"
     },
     zh: {
-      title: "生日快乐，Thomas 黄钧正！",
+      title: "生日快乐，Thomas！",
       message: "愿你的天空充满梦想，头脑充满思想，内心充满欢喜——带着🇫🇷与🇺🇸的精神！",
       countdown: "倒计时：距离12月2日还有X天 🎉",
       quote: "“既成事实，无法改变。”",
@@ -351,7 +314,7 @@
       restartBtn: "重新测试"
     },
     fr: {
-      title: "Joyeux Anniversaire, Thomas Huang Junzheng !",
+      title: "Joyeux Anniversaire, Thomas !",
       message: "Que ton ciel soit rempli de rêves, ton esprit d'idées, et ton cœur de joie — avec un soupçon d’esprit 🇫🇷 et 🇺🇸 !",
       countdown: "Compte à rebours : X jour(s) avant le 2 décembre 🎉",
       quote: "“Ce qui est fait est fait.”",
@@ -364,29 +327,11 @@
 
   function setLanguage(lang) {
     currentLang = lang;
-    // 更新按钮状态
-    ['btn-en','btn-zh','btn-fr'].forEach(id=>{
-      document.getElementById(id).setAttribute('aria-pressed', id === 'btn-'+lang ? 'true' : 'false');
+    ['btn-en', 'btn-zh', 'btn-fr'].forEach(id => {
+      document.getElementById(id).setAttribute('aria-pressed', id === 'btn-' + lang ? 'true' : 'false');
     });
 
-    document.getElementById('title').textContent = messages[lang].title + " ";
-    // 添加旗帜emoji不破坏文本可选
-    const flagsSpan = document.createElement('span');
-    flagsSpan.setAttribute('aria-label','French flag');
-    flagsSpan.setAttribute('role','img');
-    flagsSpan.textContent = '🇫🇷';
-    const flagsSpan2 = document.createElement('span');
-    flagsSpan2.setAttribute('aria-label','USA flag');
-    flagsSpan2.setAttribute('role','img');
-    flagsSpan2.textContent = '🇺🇸';
-
-    const title = document.getElementById('title');
-    title.textContent = '';
-    title.append(messages[lang].title);
-    title.append(' ');
-    title.appendChild(flagsSpan);
-    title.appendChild(flagsSpan2);
-
+    document.getElementById('title').textContent = messages[lang].title;
     document.getElementById('message').textContent = messages[lang].message;
     document.getElementById('countdown').textContent = messages[lang].countdown.replace('X', '...');
     document.getElementById('quiz-title').textContent = messages[lang].quizTitle;
@@ -424,7 +369,6 @@
   }
 
   // 游戏数据和逻辑
-  // 扩展历史人物和问题，含美法彩蛋题
   const quizData = [
     {
       question: {
@@ -441,82 +385,75 @@
     },
     {
       question: {
-        en: "Which weapon would you choose in a debate?",
-        zh: "在辩论中你会选择哪种“武器”？",
-        fr: "Quelle arme choisiriez-vous dans un débat ?"
+        en: "Which famous American landmark is known as the 'Statue of Liberty'?",
+        zh: "哪个著名的美国地标被称为“自由女神像”？",
+        fr: "Quel monument américain célèbre est connu sous le nom de « Statue de la Liberté » ?"
       },
       options: [
-        { text: {en:"Logic", zh:"逻辑", fr:"Logique"}, points: {lincoln: [1]} },
-        { text: {en:"Charisma", zh:"魅力", fr:"Charisme"}, points: {dumas: [1]} },
-        { text: {en:"Strategy", zh:"策略", fr:"Stratégie"}, points: {napoleon: [1]} },
-        { text: {en:"Courage", zh:"勇气", fr:"Courage"}, points: {amelia: [1]} }
+        { text: {en:"Mount Rushmore", zh:"拉什莫尔山", fr:"Mont Rushmore"}, points: {lincoln: [1]} },
+        { text: {en:"Statue of Liberty", zh:"自由女神像", fr:"Statue de la Liberté"}, points: {amelia: [1]} },
+        { text: {en:"Golden Gate Bridge", zh:"金门大桥", fr:"Pont du Golden Gate"}, points: {napoleon: [1]} },
       ]
-    },
-    // 法国彩蛋题
-    {
-      question: {
-        en: "Who wrote 'Les Trois Mousquetaires' (The Three Musketeers)?",
-        zh: "谁写了《三个火枪手》？",
-        fr: "Qui a écrit « Les Trois Mousquetaires » ?"
-      },
-      options: [
-        { text: {en:"Victor Hugo", zh:"维克多·雨果", fr:"Victor Hugo"}, points: {napoleon: [1]} },
-        { text: {en:"Alexandre Dumas",
-zh:"亚历山大·大仲马", fr:"Alexandre Dumas"}, points: {dumas: [1]} },
-{ text: {en:"Marcel Proust", zh:"马塞尔·普鲁斯特", fr:"Marcel Proust"}, points: {amelia: [1]} }
-]
-},
-// 美国彩蛋题
-{
-question: {
-en: "Which famous American landmark is known as the 'Statue of Liberty'?",
-zh: "哪个著名的美国地标被称为“自由女神像”？",
-fr: "Quel monument américain célèbre est connu sous le nom de « Statue de la Liberté » ?"
-},
-options: [
-{ text: {en:"Mount Rushmore", zh:"拉什莫尔山", fr:"Mont Rushmore"}, points: {lincoln: [1]} },
-{ text: {en:"Statue of Liberty", zh:"自由女神像", fr:"Statue de la Liberté"}, points: {amelia: [1]} },
-{ text: {en:"Golden Gate Bridge", zh:"金门大桥", fr:"Pont du Golden Gate"}, points: {napoleon: [1]} },
-]
-}
-];
-let currentQuestion = 0;
-let answers = [];
-function restartQuiz(){
-currentQuestion = 0;
-answers = [];
-document.getElementById('next-btn').disabled = false;
-document.getElementById('quiz-content').innerHTML = '';
-renderQuestion();
-}
-function renderQuestion() {
-const question = quizData[currentQuestion];
-const questionElement = document.createElement('div');
-questionElement.classList.add('question');
-questionElement.innerHTML = <p>${question.question[currentLang]}</p> <ul class="options"> ${question.options.map((option, i) =>
-<li><button onclick="selectOption(${i})">${option.text[currentLang]}</button></li>
-).join('')} </ul> ;
-document.getElementById('quiz-content').append(questionElement);
-}
-function selectOption(optionIndex){
-const question = quizData[currentQuestion];
-answers.push(question.options[optionIndex].points);
-document.getElementById('next-btn').disabled = false;
-}
-function nextQuestion() {
-if (currentQuestion < quizData.length - 1) {
-currentQuestion++;
-renderQuestion();
-} else {
-showResult();
-}
-}
-function showResult() {
-const resultElement = document.getElementById('result');
-resultElement.style.display = 'block';
-resultElement.innerHTML = <h3>You've completed the quiz!</h3> <p>Here's your result:</p> <blockquote> You are a true adventurer! </blockquote> <div class="btn-center"> <button onclick="restartQuiz()">Retake Quiz</button> </div> ;
-}
-document.getElementById('next-btn').onclick = nextQuestion;
-setLanguage('en');
+    }
+  ];
+  let currentQuestion = 0;
+  let answers = [];
+
+  function restartQuiz(){
+    currentQuestion = 0;
+    answers = [];
+    document.getElementById('next-btn').disabled = false;
+    document.getElementById('quiz-content').innerHTML = '';
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const question = quizData[currentQuestion];
+    const questionElement = document.createElement('div');
+    questionElement.classList.add('question');
+    questionElement.innerHTML = `
+      <p>${question.question[currentLang]}</p>
+      <ul class="options">
+        ${question.options.map((option, i) => `
+          <li><button onclick="selectOption(${i})">${option.text[currentLang]}</button></li>
+        `).join('')}
+      </ul>
+    `;
+    document.getElementById('quiz-content').append(questionElement);
+  }
+
+  function selectOption(optionIndex){
+    const question = quizData[currentQuestion];
+    answers.push(question.options[optionIndex].points);
+    document.getElementById('next-btn').disabled = false;
+  }
+
+  function nextQuestion() {
+    if (currentQuestion < quizData.length - 1) {
+      currentQuestion++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    const resultElement = document.getElementById('result');
+    resultElement.style.display = 'block';
+    resultElement.innerHTML = `
+      <h3>You've completed the quiz!</h3>
+      <p>Here's your result:</p>
+      <blockquote>
+        You are a true adventurer!
+      </blockquote>
+      <div class="btn-center">
+        <button onclick="restartQuiz()">Retake Quiz</button>
+      </div>
+    `;
+  }
+
+  document.getElementById('next-btn').onclick = nextQuestion;
+  setLanguage('en');
 </script>
-</body> </html> 
+</body>
+</html>
