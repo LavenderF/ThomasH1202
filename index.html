@@ -65,8 +65,6 @@
   <button id="next-btn" onclick="nextQuestion()" disabled>Next</button>
   <div id="result"></div>
 </div>
-<input id="easterEgg" placeholder="Type 'avicii'..." />
-<audio id="avicii-audio" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3dcd28b1f1.mp3?filename=happy-epic-inspirational-ambient-12606.mp3"></audio>
 
 <script>
 let currentLang = 'en';
@@ -124,6 +122,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let fireworks = [];
+const colors = ['#ff4081', '#ffeb3b', '#4caf50', '#2196f3', '#ff5722', '#9c27b0', '#00bcd4'];
+
 function createFirework(x, y) {
   for (let i = 0; i < 100; i++) {
     fireworks.push({
@@ -132,10 +132,12 @@ function createFirework(x, y) {
       vx: Math.random() * 4 - 2,
       vy: Math.random() * 4 - 2,
       alpha: 1,
-      radius: Math.random() * 2 + 1
+      radius: Math.random() * 2 + 1,
+      color: colors[Math.floor(Math.random() * colors.length)]
     });
   }
 }
+
 function drawFireworks() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   fireworks.forEach((p, i) => {
@@ -145,17 +147,18 @@ function drawFireworks() {
     ctx.globalAlpha = p.alpha;
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = "#ff4081";
+    ctx.fillStyle = p.color;
     ctx.fill();
   });
   fireworks = fireworks.filter(p => p.alpha > 0);
   requestAnimationFrame(drawFireworks);
 }
+
 canvas.addEventListener("click", e => createFirework(e.clientX, e.clientY));
 drawFireworks();
 
 // Avicii Easter Egg
-const audio = document.getElementById('avicii-audio');
+const audio = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_3dcd28b1f1.mp3?filename=happy-epic-inspirational-ambient-12606.mp3');
 document.getElementById('easterEgg').addEventListener('input', function(e) {
   if (e.target.value.toLowerCase() === 'avicii') {
     audio.play();
@@ -169,3 +172,4 @@ renderQuestion();
 
 </body>
 </html>
+
