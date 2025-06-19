@@ -1,271 +1,377 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Thomas!</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #b8f3e7, #d6ecff);
-      color: #033f4f;
-      text-align: center;
-      overflow-x: hidden;
-    }
-    h1 {
-      font-size: 3em;
-      margin-top: 40px;
-    }
-    #language-buttons button {
-      margin: 0 10px;
-      padding: 10px 20px;
-      font-size: 1em;
-      cursor: pointer;
-      background: #ffffffcc;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-    #quote {
-      margin: 20px;
-      font-style: italic;
-      font-size: 1.5em;
-    }
-    #quiz {
-      margin: 30px auto;
-      max-width: 600px;
-      padding: 20px;
-      border-radius: 12px;
-      background-color: #ffffffdd;
-    }
-    .question {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
-    .options button {
-      display: block;
-      width: 90%;
-      margin: 8px auto;
-      padding: 10px;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 10px;
-      border: none;
-      background: #d0f0fd;
-    }
-    #result {
-      display: none;
-      margin-top: 20px;
-      font-weight: bold;
-    }
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 100;
-    }
-    #plane {
-      width: 300px;
-      margin-top: 20px;
-      animation: flyin 3s ease-out forwards;
-    }
-    @keyframes flyin {
-      0% { transform: translateX(-100vw); opacity: 0; }
-      100% { transform: translateX(0); opacity: 1; }
-    }
-    #countdown {
-      font-size: 1.5em;
-      margin-top: 20px;
-      color: #555;
-    }
-    #stars {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      background: transparent;
-      pointer-events: none;
-    }
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: twinkle 3s infinite ease-in-out;
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Happy Birthday Thomas! 🎉</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #b8f3e7, #d6ecff);
+    overflow-x: hidden;
+    color: #033f4f;
+    text-align: center;
+    position: relative;
+    user-select: none;
+    transition: background 2s ease;
+  }
+  h1 {
+    font-size: 3.2rem;
+    margin-top: 40px;
+    text-shadow: 0 0 5px #065a73;
+  }
+  #quote {
+    font-style: italic;
+    font-size: 1.4rem;
+    margin: 15px 10px 30px 10px;
+    color: #025d71cc;
+  }
+  #countdown {
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: #04596b;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite alternate;
+  }
+  @keyframes pulse {
+    0% { text-shadow: 0 0 4px #b3e5fc;}
+    100% { text-shadow: 0 0 15px #03a9f4;}
+  }
+  #quiz {
+    max-width: 620px;
+    margin: 20px auto 50px auto;
+    background: #ffffffdd;
+    border-radius: 15px;
+    padding: 25px 20px;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+  }
+  .question {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #014f6e;
+  }
+  .options button {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    background: #a6dfffcc;
+    color: #014f6e;
+    box-shadow: 0 3px 6px #62b0d9aa;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  .options button:hover {
+    background: #02a9f4cc;
+    color: #fff;
+    box-shadow: 0 4px 15px #0299ffdd;
+  }
+  #next-btn {
+    margin-top: 15px;
+    padding: 12px 28px;
+    font-size: 1.15rem;
+    border-radius: 15px;
+    background-color: #0388c6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 12px #026293aa;
+    transition: background-color 0.25s ease;
+    user-select: none;
+  }
+  #next-btn:disabled {
+    background-color: #82c1e6;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  #result {
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #01739c;
+  }
+  #plane {
+    width: 320px;
+    position: fixed;
+    top: 50px;
+    left: -350px;
+    animation: planeFly 10s linear forwards;
+    filter: drop-shadow(0 0 6px #059);
+    user-select: none;
+    z-index: 200;
+  }
+  @keyframes planeFly {
+    0% { left: -350px; top: 40px; opacity: 0;}
+    30% { opacity: 1;}
+    50% { top: 100px; left: 50vw;}
+    80% { top: 50px; left: 110vw;}
+    100% { opacity: 0; left: 110vw; }
+  }
+  canvas#fireworks {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 100;
+  }
+  #stars {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: transparent;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 3s infinite ease-in-out;
+  }
+  @keyframes twinkle {
+    0%,100% { opacity: 0.2;}
+    50% { opacity: 1;}
+  }
+  #gift-container {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 150;
+    height: 150px;
+    overflow: visible;
+    user-select: none;
+  }
+  .gift {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: url('https://cdn-icons-png.flaticon.com/512/616/616408.png') no-repeat center center / contain;
+    cursor: pointer;
+    pointer-events: auto;
+    animation-timing-function: linear;
+    filter: drop-shadow(0 0 4px #d16);
+    user-select: none;
+  }
+  #music-control {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: #0288d1cc;
+    border-radius: 30px;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    user-select: none;
+    z-index: 300;
+    box-shadow: 0 4px 10px #016aa4cc;
+    transition: background-color 0.3s ease;
+  }
+  #music-control:hover {
+    background: #01a0ffcc;
+  }
+  /* 新增烟花设置面板 */
+  #firework-settings {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    background: #ffffffcc;
+    border-radius: 12px;
+    padding: 15px;
+    width: 200px;
+    z-index: 310;
+    box-shadow: 0 0 10px #5a9bdcaa;
+    user-select: none;
+  }
+  #firework-settings h3 {
+    margin: 0 0 10px 0;
+    font-weight: 700;
+    color: #0277bd;
+  }
+  label {
+    display: block;
+    margin: 8px 0 5px 0;
+    font-weight: 600;
+    color: #025d71;
+  }
+  select, input[type=range] {
+    width: 100%;
+    padding: 5px;
+    border-radius: 8px;
+    border: 1.5px solid #81d4fa;
+    font-size: 1rem;
+    outline-color: #0288d1;
+  }
+  #footer-credit {
+    position: fixed;
+    bottom: 5px;
+    left: 10px;
+    font-size: 0.75rem;
+    color: #05506eaa;
+    user-select: none;
+  }
+</style>
 </head>
 <body>
+
 <div id="stars"></div>
 <canvas id="fireworks"></canvas>
 <img id="plane" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Airbus_A380_blue_sky.jpg/640px-Airbus_A380_blue_sky.jpg" alt="A380 Plane" />
+
 <h1 id="title">Happy Birthday, Thomas!</h1>
-<div id="language-buttons">
-  <button onclick="setLanguage('en')">English</button>
-  <button onclick="setLanguage('zh')">中文</button>
-  <button onclick="setLanguage('fr')">Français</button>
-</div>
-<div id="quote"></div>
+<div id="quote">All human wisdom is in these two words: Wait and Hope. What’s done is done.</div>
 <div id="countdown"></div>
+
 <div id="quiz">
   <div class="question" id="question"></div>
   <div class="options" id="options"></div>
   <button id="next-btn" onclick="nextQuestion()" disabled>Next</button>
   <div id="result"></div>
 </div>
-<input id="easterEgg" placeholder="Type 'avicii'..." />
-<audio id="avicii-audio" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3dcd28b1f1.mp3?filename=happy-epic-inspirational-ambient-12606.mp3"></audio>
+
+<div id="gift-container"></div>
+
+<div id="music-control" title="Toggle Music">🔊 Play Music</div>
+
+<div id="firework-settings">
+  <h3>Firework Settings</h3>
+  <label for="colorSelect">Color:</label>
+  <select id="colorSelect">
+    <option value="all">All Colors</option>
+    <option value="#ff4081">Pink</option>
+    <option value="#ffeb3b">Yellow</option>
+    <option value="#4caf50">Green</option>
+    <option value="#2196f3">Blue</option>
+    <option value="#ff5722">Orange</option>
+    <option value="#9c27b0">Purple</option>
+    <option value="#00bcd4">Cyan</option>
+  </select>
+  <label for="countRange">Amount:</label>
+  <input type="range" id="countRange" min="5" max="50" value="20" />
+</div>
+
+<div id="footer-credit">Made with ❤️ by square_eel</div>
+
+<audio id="background-music" loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3dcd28b1f1.mp3?filename=happy-epic-inspirational-ambient-12606.mp3"></audio>
 
 <script>
-let currentLang = 'en';
-const messages = {
-  en: {
-    title: "Happy Birthday, Thomas!",
-    quote: "All human wisdom is in these two words: Wait and Hope. What’s done is done.",
-    question: "Which famous American landmark is known as the 'Statue of Liberty'?",
-    options: ["Mount Rushmore", "Statue of Liberty", "Golden Gate Bridge"],
-    result: "You are a true adventurer!"
-  },
-  zh: {
-    title: "生日快乐，Thomas！",
-    quote: "人类所有智慧，都包含在这两个词里：等待和希望。既成事实，无法改变。",
-    question: "哪个著名美国地标被称为“自由女神像”？",
-    options: ["拉什莫尔山", "自由女神像", "金门大桥"],
-    result: "你是真正的冒险家！"
-  },
-  fr: {
-    title: "Joyeux anniversaire, Thomas!",
-    quote: "Toute la sagesse humaine sera dans ces deux mots: Attendre, et Espérer. Ce qui est fait est fait.",
-    question: "Quel monument américain célèbre est connu sous le nom de \u00ab Statue de la Liberté \u00bb ?",
-    options: ["Mont Rushmore", "Statue de la Liberté", "Pont du Golden Gate"],
-    result: "Vous êtes un véritable aventurier !"
+  // Language & Quiz Logic
+  let currentLang = 'en';
+  const messages = {
+    en: {
+      title: "Happy Birthday, Thomas!",
+      quote: "All human wisdom is in these two words: Wait and Hope. What’s done is done.",
+      question: "Which famous American landmark is known as the 'Statue of Liberty'?",
+      options: ["Mount Rushmore", "Statue of Liberty", "Golden Gate Bridge"],
+      result: "You are a true adventurer!"
+    },
+    zh: {
+      title: "生日快乐，Thomas！",
+      quote: "人类所有智慧，都包含在这两个词里：等待和希望。既成事实，无法改变。",
+      question: "哪个著名美国地标被称为“自由女神像”？",
+      options: ["拉什莫尔山", "自由女神像", "金门大桥"],
+      result: "你是真正的冒险家！"
+    },
+    fr: {
+      title: "Joyeux anniversaire, Thomas!",
+      quote: "Toute la sagesse humaine sera dans ces deux mots: Attendre, et Espérer. Ce qui est fait est fait.",
+      question: "Quel monument américain célèbre est connu sous le nom de « Statue de la Liberté » ?",
+      options: ["Mont Rushmore", "Statue de la Liberté", "Pont du Golden Gate"],
+      result: "Vous êtes un véritable aventurier !"
+    }
+  };
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    document.getElementById('title').innerText = messages[lang].title;
+    document.getElementById('quote').innerText = messages[lang].quote;
+    renderQuestion();
   }
-};
 
-function setLanguage(lang) {
-  currentLang = lang;
-  document.getElementById('title').innerText = messages[lang].title;
-  document.getElementById('quote').innerText = messages[lang].quote;
-  renderQuestion();
-}
-
-function renderQuestion() {
-  document.getElementById('question').innerText = messages[currentLang].question;
-  const opts = messages[currentLang].options;
-  const container = document.getElementById('options');
-  container.innerHTML = '';
-  opts.forEach((opt, idx) => {
-    const btn = document.createElement('button');
-    btn.innerText = opt;
-    btn.onclick = () => {
-      document.getElementById('next-btn').disabled = false;
-      selectedOption = idx;
-    };
-    container.appendChild(btn);
-  });
-  document.getElementById('next-btn').disabled = true;
-  document.getElementById('result').style.display = 'none';
-}
-
-let selectedOption = -1;
-function nextQuestion() {
-  if (selectedOption !== -1) {
-    document.getElementById('result').innerText = messages[currentLang].result;
-    document.getElementById('result').style.display = 'block';
+  function renderQuestion() {
+    document.getElementById('question').innerText = messages[currentLang].question;
+    const opts = messages[currentLang].options;
+    const container = document.getElementById('options');
+    container.innerHTML = '';
+    opts.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.innerText = opt;
+      btn.onclick = () => {
+        document.getElementById('next-btn').disabled = false;
+        selectedOption = idx;
+      };
+      container.appendChild(btn);
+    });
+    document.getElementById('next-btn').disabled = true;
+    document.getElementById('result').style.display = 'none';
   }
-}
 
-// Fireworks
+  let selectedOption = -1;
+  function nextQuestion() {
+    if (selectedOption !== -1) {
+      document.getElementById('result').innerText = messages[currentLang].result;
+      document.getElementById('result').style.display = 'block';
+}
+}
+// Fireworks Logic
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
 let fireworks = [];
 const colors = ['#ff4081', '#ffeb3b', '#4caf50', '#2196f3', '#ff5722', '#9c27b0', '#00bcd4'];
 function createFirework(x, y) {
-  for (let i = 0; i < 100; i++) {
-    fireworks.push({
-      x: x,
-      y: y,
-      vx: Math.random() * 4 - 2,
-      vy: Math.random() * 4 - 2,
-      alpha: 1,
-      radius: Math.random() * 2 + 1,
-      color: colors[Math.floor(Math.random() * colors.length)]
-    });
-  }
+for (let i = 0; i < 100; i++) {
+fireworks.push({
+x: x,
+y: y,
+vx: Math.random() * 4 - 2,
+vy: Math.random() * 4 - 2,
+alpha: 1,
+radius: Math.random() * 2 + 1,
+color: colors[Math.floor(Math.random() * colors.length)]
+});
+}
 }
 function drawFireworks() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  fireworks.forEach((p, i) => {
-    p.x += p.vx;
-    p.y += p.vy;
-    p.alpha -= 0.01;
-    ctx.globalAlpha = p.alpha;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = p.color;
-    ctx.fill();
-  });
-  fireworks = fireworks.filter(p => p.alpha > 0);
-  requestAnimationFrame(drawFireworks);
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+fireworks.forEach((p, i) => {
+p.x += p.vx;
+p.y += p.vy;
+p.alpha -= 0.01;
+ctx.globalAlpha = p.alpha;
+ctx.beginPath();
+ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
+ctx.fillStyle = p.color;
+ctx.fill();
+});
+fireworks = fireworks.filter(p => p.alpha > 0);
+requestAnimationFrame(drawFireworks);
 }
 canvas.addEventListener("click", e => createFirework(e.clientX, e.clientY));
 drawFireworks();
-
-// Stars Background
-function createStars() {
-  const starContainer = document.getElementById('stars');
-  for (let i = 0; i < 150; i++) {
-    const star = document.createElement('div');
-    star.classList.add('star');
-    star.style.top = Math.random() * 100 + '%';
-    star.style.left = Math.random() * 100 + '%';
-    starContainer.appendChild(star);
-  }
+// Easter Egg
+const audio = document.getElementById('background-music');
+document.getElementById('music-control').onclick = () => {
+if (audio.paused) {
+audio.play();
+document.getElementById('music-control').innerText = '🔇 Pause Music';
+} else {
+audio.pause();
+document.getElementById('music-control').innerText = '🔊 Play Music';
 }
-createStars();
-
-// Avicii Easter Egg
-const audio = document.getElementById('avicii-audio');
-document.getElementById('easterEgg').addEventListener('input', function(e) {
-  if (e.target.value.toLowerCase() === 'avicii') {
-    audio.play();
-    createFirework(window.innerWidth / 2, window.innerHeight / 2);
-  }
-});
-
-// Countdown Timer
-function updateCountdown() {
-  const birthday = new Date(new Date().getFullYear(), 11, 2);
-  const now = new Date();
-  const diff = birthday - now;
-  if (diff <= 0) {
-    document.getElementById('countdown').innerText = '🎂 Today is the day! Happy Birthday! 🎉';
-    return;
-  }
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / 1000 / 60) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
-  document.getElementById('countdown').innerText = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s until December 2nd!`;
-  requestAnimationFrame(updateCountdown);
-}
-updateCountdown();
-
-setLanguage('en');
+};
 </script>
-</body>
-</html>
-
+</body> </html>
