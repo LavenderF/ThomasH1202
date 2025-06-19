@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Thomas | Joyeux Anniversaire</title>
+<title>Thomas' Birthday 🎉</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
   html, body {
@@ -212,12 +212,29 @@
     color: #064663;
     box-shadow: 0 6px 20px #4db6accc;
   }
+  /* 彩蛋输入框 */
+  #easter-egg-container {
+    margin-top: 40px;
+  }
+  #easter-egg-input {
+    padding: 12px 18px;
+    border-radius: 30px;
+    border: 2px solid #4db6ac;
+    font-size: 1.1em;
+    width: 250px;
+    max-width: 90vw;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  #easter-egg-input:focus {
+    border-color: #037a9d;
+  }
 </style>
 </head>
 <body>
 <canvas id="fireworks"></canvas>
 
-<div class="container" role="main">
+<div class="container" role="main" tabindex="-1">
   <div id="airplane-container" aria-label="Airbus A380 airplane container">
     <img id="airplane" src="https://upload.wikimedia.org/wikipedia/commons/2/20/Airbus_A380_in_flight_2014-05-06.jpg" alt="Airbus A380" />
     <div id="airplane-door" aria-label="Airplane door"></div>
@@ -229,7 +246,7 @@
     <button id="btn-fr" onclick="setLanguage('fr')" aria-pressed="false" type="button">Français</button>
   </div>
 
-  <h1 id="title">
+  <h1 id="title" tabindex="0">
     Happy Birthday, Thomas! 
     <span aria-label="French flag" role="img">🇫🇷</span>
     <span aria-label="USA flag" role="img">🇺🇸</span>
@@ -249,10 +266,16 @@
     </div>
     <div id="result" role="region" aria-live="polite" aria-atomic="true"></div>
   </section>
+
+  <div id="easter-egg-container" aria-label="Easter egg input">
+    <input id="easter-egg-input" type="text" placeholder="Try typing a secret word..." aria-describedby="easter-egg-instruction" />
+  </div>
 </div>
 
+<audio id="avicii-audio" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3dcd28b1f1.mp3?filename=happy-epic-inspirational-ambient-12606.mp3" preload="auto"></audio>
+
 <script>
-  // 烟花动画及点击触发，保留之前的完整效果
+  // 烟花动画
   const canvas = document.getElementById('fireworks');
   const ctx = canvas.getContext('2d');
   let w, h;
@@ -313,19 +336,16 @@
     createFirework(e.clientX, e.clientY);
   });
 
-  // 飞机动画及舱门打开，打开后从舱门位置发射烟花
+  // 飞机动画及舱门打开，打开后烟花
   const airplaneContainer = document.getElementById('airplane-container');
 
   setTimeout(() => {
     airplaneContainer.classList.add('open-door');
-    // 舱门中心位置计算（相对于页面）
-    const rect = airplaneContainer.getBoundingClientRect();
     const door = document.getElementById('airplane-door');
     const doorRect = door.getBoundingClientRect();
     const x = doorRect.left + doorRect.width / 2;
     const y = doorRect.top + doorRect.height / 2;
     createFirework(x, y);
-    // 制造连续烟花
     let count = 0;
     const intervalId = setInterval(() => {
       createFirework(x + random(-30,30), y + random(-30,30));
@@ -334,9 +354,8 @@
     }, 400);
   }, 5500);
 
-  // --- 语言切换和倒计时 ---
+  // 语言切换及内容更新
   let currentLang = 'en';
-
   const messages = {
     en: {
       title: "Happy Birthday, Thomas!",
@@ -346,7 +365,10 @@
       quizTitle: "Which American Historical Figure Are You?",
       nextBtn: "Next",
       resultsTitle: "Your Historical Figure Result",
-      restartBtn: "Retake Quiz"
+      restartBtn: "Retake Quiz",
+      completed: "You've completed the quiz!",
+      resultMessage: "Here's your result:",
+      resultQuote: "You are a true adventurer!"
     },
     zh: {
       title: "生日快乐，Thomas！",
@@ -356,7 +378,10 @@
       quizTitle: "你是哪位美国历史人物？",
       nextBtn: "下一题",
       resultsTitle: "你是历史人物",
-      restartBtn: "重新测试"
+      restartBtn: "重新测试",
+      completed: "你已完成测试！",
+      resultMessage: "你的结果是：",
+      resultQuote: "你是真正的冒险家！"
     },
     fr: {
       title: "Joyeux Anniversaire, Thomas!",
@@ -366,7 +391,10 @@
       quizTitle: "Quel personnage historique américain êtes-vous ?",
       nextBtn: "Suivant",
       resultsTitle: "Votre résultat historique",
-      restartBtn: "Refaire le test"
+      restartBtn: "Refaire le test",
+      completed: "Vous avez terminé le quiz !",
+      resultMessage: "Voici votre résultat :",
+      resultQuote: "Vous êtes un véritable aventurier !"
     }
   };
 
@@ -374,7 +402,6 @@
     currentLang = lang;
     updateContent();
     updateCountdown();
-    // 按钮样式切换
     document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
     document.getElementById('btn-zh').setAttribute('aria-pressed', lang === 'zh');
     document.getElementById('btn-fr').setAttribute('aria-pressed', lang === 'fr');
@@ -386,6 +413,13 @@
     document.getElementById('quote').textContent = messages[currentLang].quote;
     document.getElementById('quiz-title').textContent = messages[currentLang].quizTitle;
     document.getElementById('next-btn').textContent = messages[currentLang].nextBtn;
+    // 清理历史题目区域
+    document.getElementById('quiz-content').innerHTML = '';
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('next-btn').disabled = true;
+    currentQuestion = 0;
+    answers = [];
+    renderQuestion();
   }
 
   function updateCountdown(){
@@ -400,17 +434,17 @@
   setInterval(updateCountdown, 1000);
   setLanguage('en');
 
-  // --------- 历史人物小游戏逻辑 ---------
-  // 测试题示例
+  // 小游戏题库
   const quizData = [
     {
       question: {
         en: "Which famous American landmark is known as the 'Statue of Liberty'?",
         zh: "哪个著名的美国地标被称为“自由女神像”？",
-fr: "Quel monument américain célèbre est connu sous le nom de « Statue de la Liberté » ?"
-},
-options: [
-{ text: { en:"Mount Rushmore", zh:"拉什莫尔山", fr:"Mont Rushmore"}, points: {lincoln: [1]} },
+        fr: "Quel monument américain célèbre est connu sous le nom de « Statue de la Liberté » ?"
+      },
+      options: [
+        { text: { en:"Mount Rushmore", zh:"拉什莫尔山", fr:"Mont Rushmore"}, points: {
+lincoln: [1]} },
 { text: { en:"Statue of Liberty", zh:"自由女神像", fr:"Statue de la Liberté"}, points: {amelia: [1]} },
 { text: { en:"Golden Gate Bridge", zh:"金门大桥", fr:"Pont du Golden Gate"}, points: {napoleon: [1]} },
 ]
@@ -441,7 +475,7 @@ showResult();
 function showResult() {
 const resultElement = document.getElementById('result');
 resultElement.style.display = 'block';
-resultElement.innerHTML = <h3>You've completed the quiz!</h3> <p>Here's your result:</p> <blockquote> You are a true adventurer! </blockquote> <div class="btn-center"> <button onclick="restartQuiz()">Retake Quiz</button> </div> ;
+resultElement.innerHTML = <h3>${messages[currentLang].completed}</h3> <p>${messages[currentLang].resultMessage}</p> <blockquote> ${messages[currentLang].resultQuote} </blockquote> <div class="btn-center"> <button onclick="restartQuiz()">${messages[currentLang].restartBtn}</button> </div> ;
 }
 function restartQuiz() {
 currentQuestion = 0;
@@ -453,4 +487,4 @@ renderQuestion();
 document.getElementById('next-btn').onclick = nextQuestion;
 renderQuestion();
 </script>
-</body> </html> 
+</body> </html>
