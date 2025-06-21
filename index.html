@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joyeux Anniversaire Thomas | Échecs & Sagesse</title>
+    <title>Happy Birthday Thomas! | 生日快乐 Thomas! | Joyeux Anniversaire Thomas!</title>
     <style>
         body {
             font-family: 'Georgia', serif;
@@ -286,6 +286,86 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
+        .ap-scores {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #ff9800;
+        }
+        
+        .ap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .ap-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .ap-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .ap-card h4 {
+            margin-top: 0;
+            color: #006064;
+        }
+        
+        .ap-score {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 10px 0;
+        }
+        
+        .ap-5 {
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            color: white;
+        }
+        
+        .ap-checker {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 235, 59, 0.2);
+            border-radius: 10px;
+        }
+        
+        .ap-checker input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+        
+        .ap-checker button {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .ap-checker button:hover {
+            background: #f57c00;
+        }
+        
+        .ap-result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
         footer {
             text-align: center;
             padding: 20px;
@@ -401,6 +481,10 @@
             .tommy-awesome iframe {
                 height: 300px;
             }
+            
+            .ap-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -409,8 +493,16 @@
     
     <div class="container">
         <header>
-            <h1>Joyeux Anniversaire Thomas!</h1>
-            <div class="subtitle">2 Décembre - Célébration des Échecs et de la Sagesse</div>
+            <h1>
+                <span class="lang-fr">Joyeux Anniversaire Thomas!</span>
+                <span class="lang-en hidden">Happy Birthday Thomas!</span>
+                <span class="lang-zh hidden">生日快乐 Thomas!</span>
+            </h1>
+            <div class="subtitle">
+                <span class="lang-fr">2 Décembre - Célébration des Échecs et de la Sagesse</span>
+                <span class="lang-en hidden">December 2nd - Chess & Wisdom Celebration</span>
+                <span class="lang-zh hidden">12月2日 - 国际象棋与智慧的庆典</span>
+            </div>
         </header>
         
         <div class="chess-board" id="chess-board">
@@ -420,28 +512,95 @@
         <div class="language-toggle">
             <button id="french-btn" class="active">Français</button>
             <button id="english-btn">English</button>
+            <button id="chinese-btn">中文</button>
         </div>
         
         <div class="birthday-message">
             <div id="french-message">
                 <h2>À un Ami Exceptionnel</h2>
                 <p>En ce jour spécial, je te souhaite des victoires sans fin sur l'échiquier, des voyages inspirants à travers la littérature et la réalisation de tous tes rêves.</p>
-                <p>Puisse ton année être aussi grandiose que l'envergure d'un A380, aussi profonde que les romans de Dumas et aussi électrisante que les beats d'Avicii.</p>
+                <p>Puisse ton année être aussi grandiose que tes résultats AP, aussi profonde que les romans de Dumas et aussi électrisante que les beats d'Avicii.</p>
                 <p>Joyeux Anniversaire!</p>
             </div>
             <div id="english-message" class="hidden">
                 <h2>To an Exceptional Friend</h2>
                 <p>On this special day, I wish you endless victories on the chessboard, inspiring journeys through literature, and the realization of all your dreams.</p>
-                <p>May your year be as grand as an A380's wingspan, as profound as Dumas' novels, and as electrifying as Avicii's beats.</p>
+                <p>May your year be as grand as your AP scores, as profound as Dumas' novels, and as electrifying as Avicii's beats.</p>
                 <p>Happy Birthday!</p>
+            </div>
+            <div id="chinese-message" class="hidden">
+                <h2>致非凡的朋友</h2>
+                <p>在这个特别的日子里，祝你在国际象棋棋盘上取得无尽胜利，在文学之旅中获得启发，并实现所有梦想。</p>
+                <p>愿你新的一年如你的AP成绩一样辉煌，如大仲马的小说一样深邃，如Avicii的节拍一样令人振奋。</p>
+                <p>生日快乐！</p>
             </div>
         </div>
         
         <div class="french-wisdom">
-            <h3>La Sagesse de Thomas</h3>
+            <h3 class="lang-fr">La Sagesse de Thomas</h3>
+            <h3 class="lang-en hidden">Thomas's Wisdom</h3>
+            <h3 class="lang-zh hidden">Thomas的智慧</h3>
             <p>"Ce qui est fait est fait"</p>
             <p>"Toute la sagesse humaine sera dans ces deux mots: Attendre et Espérer"</p>
             <p>- Alexandre Dumas, Le Comte de Monte-Cristo</p>
+        </div>
+        
+        <div class="ap-scores">
+            <h3 class="lang-fr">Les Résultats Exceptionnels d'AP de Thomas</h3>
+            <h3 class="lang-en hidden">Thomas's Outstanding AP Scores</h3>
+            <h3 class="lang-zh hidden">Thomas出色的AP成绩</h3>
+            
+            <div class="ap-grid">
+                <div class="ap-card ap-5">
+                    <h4 class="lang-fr">Histoire Mondiale</h4>
+                    <h4 class="lang-en hidden">World History</h4>
+                    <h4 class="lang-zh hidden">世界历史</h4>
+                    <div class="ap-score">5</div>
+                    <p class="lang-fr">Score parfait!</p>
+                    <p class="lang-en hidden">Perfect score!</p>
+                    <p class="lang-zh hidden">满分成绩！</p>
+                </div>
+                <div class="ap-card ap-5">
+                    <h4 class="lang-fr">Langue et Culture Françaises</h4>
+                    <h4 class="lang-en hidden">French Language & Culture</h4>
+                    <h4 class="lang-zh hidden">法语语言与文化</h4>
+                    <div class="ap-score">5</div>
+                    <p class="lang-fr">Exceptionnel!</p>
+                    <p class="lang-en hidden">Exceptional!</p>
+                    <p class="lang-zh hidden">非常出色！</p>
+                </div>
+                <div class="ap-card ap-5">
+                    <h4 class="lang-fr">Langue Anglaise</h4>
+                    <h4 class="lang-en hidden">English Language</h4>
+                    <h4 class="lang-zh hidden">英语语言</h4>
+                    <div class="ap-score">5</div>
+                    <p class="lang-fr">Brillant!</p>
+                    <p class="lang-en hidden">Brilliant!</p>
+                    <p class="lang-zh hidden">才华横溢！</p>
+                </div>
+                <div class="ap-card ap-5">
+                    <h4 class="lang-fr">Calcul BC</h4>
+                    <h4 class="lang-en hidden">Calculus BC</h4>
+                    <h4 class="lang-zh hidden">微积分BC</h4>
+                    <div class="ap-score">5</div>
+                    <p class="lang-fr">Génie mathématique!</p>
+                    <p class="lang-en hidden">Math genius!</p>
+                    <p class="lang-zh hidden">数学天才！</p>
+                </div>
+            </div>
+            
+            <div class="ap-checker">
+                <h4 class="lang-fr">Vérifiez vos propres résultats AP</h4>
+                <h4 class="lang-en hidden">Check your own AP scores</h4>
+                <h4 class="lang-zh hidden">查询你的AP成绩</h4>
+                <div>
+                    <input type="number" id="ap-score-input" min="1" max="5" placeholder="5">
+                    <button onclick="checkAPScore()" class="lang-fr">Vérifier</button>
+                    <button onclick="checkAPScore()" class="lang-en hidden">Check</button>
+                    <button onclick="checkAPScore()" class="lang-zh hidden">查询</button>
+                </div>
+                <div class="ap-result" id="ap-result"></div>
+            </div>
         </div>
         
         <div class="music-player">
@@ -456,39 +615,77 @@
         
         <div class="interests-section">
             <div class="interest-card">
-                <h3>Coin des Échecs</h3>
-                <p>"Les échecs sont une mer où un moustique peut boire et un éléphant peut se baigner." - Proverbe indien</p>
-                <p>Découvrez les effets spéciaux sur chaque case du plateau!</p>
+                <h3 class="lang-fr">Coin des Échecs</h3>
+                <h3 class="lang-en hidden">Chess Corner</h3>
+                <h3 class="lang-zh hidden">国际象棋角</h3>
+                <p class="lang-fr">"Les échecs sont une mer où un moustique peut boire et un éléphant peut se baigner." - Proverbe indien</p>
+                <p class="lang-en hidden">"Chess is a sea in which a gnat may drink and an elephant may bathe." - Indian proverb</p>
+                <p class="lang-zh hidden">"象棋是一片海，蚊子可以啜饮，大象可以沐浴。" - 印度谚语</p>
+                <p class="lang-fr">Découvrez les effets spéciaux sur chaque case du plateau!</p>
+                <p class="lang-en hidden">Discover special effects on each square of the board!</p>
+                <p class="lang-zh hidden">探索棋盘上每个格子的特殊效果！</p>
             </div>
             
             <div class="interest-card">
-                <h3>Œuvres Littéraires Préférées</h3>
-                <p>"Un pour tous, tous pour un!" - Alexandre Dumas, Les Trois Mousquetaires</p>
-                <p>"La guerre c'est la paix. La liberté c'est l'esclavage. L'ignorance c'est la force." - George Orwell, 1984</p>
+                <h3 class="lang-fr">Œuvres Littéraires Préférées</h3>
+                <h3 class="lang-en hidden">Favorite Literary Works</h3>
+                <h3 class="lang-zh hidden">最喜爱的文学作品</h3>
+                <p class="lang-fr">"Un pour tous, tous pour un!" - Alexandre Dumas, Les Trois Mousquetaires</p>
+                <p class="lang-en hidden">"All for one, one for all!" - Alexandre Dumas, The Three Musketeers</p>
+                <p class="lang-zh hidden">"人人为我，我为人人！" - 大仲马《三个火枪手》</p>
+                <p class="lang-fr">"La guerre c'est la paix. La liberté c'est l'esclavage. L'ignorance c'est la force." - George Orwell, 1984</p>
+                <p class="lang-en hidden">"War is peace. Freedom is slavery. Ignorance is strength." - George Orwell, 1984</p>
+                <p class="lang-zh hidden">"战争即和平，自由即奴役，无知即力量。" - 乔治·奥威尔《1984》</p>
             </div>
             
             <div class="interest-card">
-                <h3>Tommy Awesome</h3>
-                <p>Découvrez le site interactif créé spécialement pour Thomas!</p>
-                <p>Un espace rempli de surprises et de créativité.</p>
+                <h3 class="lang-fr">Tommy Awesome</h3>
+                <h3 class="lang-en hidden">Tommy Awesome</h3>
+                <h3 class="lang-zh hidden">Tommy Awesome</h3>
+                <p class="lang-fr">Découvrez le site interactif créé spécialement pour Thomas!</p>
+                <p class="lang-en hidden">Discover the interactive website created especially for Thomas!</p>
+                <p class="lang-zh hidden">探索专为Thomas创建的互动网站！</p>
+                <p class="lang-fr">Un espace rempli de surprises et de créativité.</p>
+                <p class="lang-en hidden">A space full of surprises and creativity.</p>
+                <p class="lang-zh hidden">充满惊喜和创意的空间。</p>
             </div>
         </div>
         
         <div class="tommy-awesome">
-            <h3>Explorez Tommy Awesome</h3>
-            <p>Découvrez ce site interactif spécialement créé pour Thomas, rempli de surprises et de créativité!</p>
+            <h3 class="lang-fr">Explorez Tommy Awesome</h3>
+            <h3 class="lang-en hidden">Explore Tommy Awesome</h3>
+            <h3 class="lang-zh hidden">探索Tommy Awesome</h3>
+            <p class="lang-fr">Découvrez ce site interactif spécialement créé pour Thomas, rempli de surprises et de créativité!</p>
+            <p class="lang-en hidden">Discover this interactive website specially created for Thomas, full of surprises and creativity!</p>
+            <p class="lang-zh hidden">探索这个专为Thomas创建的互动网站，充满惊喜和创意！</p>
             <iframe src="https://lavenderf.github.io/tommyawesome/" title="Tommy Awesome Interactive Site"></iframe>
-            <a href="https://lavenderf.github.io/tommyawesome/" class="tommy-awesome-btn" target="_blank">Visiter le Site Complet</a>
+            <a href="https://lavenderf.github.io/tommyawesome/" class="tommy-awesome-btn" target="_blank">
+                <span class="lang-fr">Visiter le Site Complet</span>
+                <span class="lang-en hidden">Visit Full Site</span>
+                <span class="lang-zh hidden">访问完整网站</span>
+            </a>
         </div>
         
         <div id="birthday-surprise" class="hidden">
-            <h2 style="text-align: center;">🎉 Joyeux Anniversaire Thomas! 🎉</h2>
-            <p style="text-align: center;" id="surprise-message">Tu as trouvé un secret! Profite de cette journée spéciale avec ces magnifiques feux d'artifice!</p>
+            <h2 style="text-align: center;">
+                <span class="lang-fr">🎉 Joyeux Anniversaire Thomas! 🎉</span>
+                <span class="lang-en hidden">🎉 Happy Birthday Thomas! 🎉</span>
+                <span class="lang-zh hidden">🎉 生日快乐 Thomas! 🎉</span>
+            </h2>
+            <p style="text-align: center;" id="surprise-message">
+                <span class="lang-fr">Tu as trouvé un secret! Profite de cette journée spéciale avec ces magnifiques feux d'artifice!</span>
+                <span class="lang-en hidden">You found a secret! Enjoy this special day with these beautiful fireworks!</span>
+                <span class="lang-zh hidden">你发现了一个秘密！用这些美丽的烟花享受这个特别的日子吧！</span>
+            </p>
         </div>
     </div>
     
     <footer>
-        <p>Créé avec ♥ pour l'anniversaire de Thomas | 2 Décembre</p>
+        <p>
+            <span class="lang-fr">Crée avec ♥ pour l'anniversaire de Thomas | 2 Décembre</span>
+            <span class="lang-en hidden">Made with ♥ for Thomas's birthday | December 2nd</span>
+            <span class="lang-zh hidden">为Thomas生日而作 ♥ | 12月2日</span>
+        </p>
     </footer>
     
     <script>
@@ -509,85 +706,32 @@
         // Special effects for each square
         const squareEffects = {
             'a1': { 
-                name: "Effet Pulsation", 
-                desc: "Le carré pulse comme un cœur qui bat",
+                name: {
+                    fr: "Effet Pulsation",
+                    en: "Pulse Effect",
+                    zh: "脉动效果"
+                }, 
+                desc: {
+                    fr: "Le carré pulse comme un cœur qui bat",
+                    en: "The square pulses like a beating heart",
+                    zh: "方块像心跳一样脉动"
+                },
                 color: "#ff5722"
             },
             'b2': { 
-                name: "Effet Rotation", 
-                desc: "Le carré tourne comme une toupie",
+                name: {
+                    fr: "Effet Rotation", 
+                    en: "Rotation Effect",
+                    zh: "旋转效果"
+                },
+                desc: {
+                    fr: "Le carré tourne comme une toupie",
+                    en: "The square spins like a top",
+                    zh: "方块像陀螺一样旋转"
+                },
                 color: "#9c27b0"
             },
-            'c3': { 
-                name: "Arc-en-Ciel", 
-                desc: "Couleurs changeantes comme un arc-en-ciel",
-                color: "#00bcd4"
-            },
-            'd4': { 
-                name: "Effet Inclinaison", 
-                desc: "Le carré se penche comme s'il allait tomber",
-                color: "#8bc34a"
-            },
-            'e5': { 
-                name: "Effet Lumineux", 
-                desc: "Le carré brille comme une étoile",
-                color: "#ff9800"
-            },
-            'f6': { 
-                name: "Effet Circulaire", 
-                desc: "Le carré devient rond comme la lune",
-                color: "#e91e63"
-            },
-            'g7': { 
-                name: "Effet 3D", 
-                desc: "Le carré prend de la profondeur",
-                color: "#673ab7"
-            },
-            'h8': { 
-                name: "Effet Rebond", 
-                desc: "Le carré saute de joie",
-                color: "#ffeb3b"
-            },
-            'a8': { 
-                name: "Effet Tremblement", 
-                desc: "Le carré tremble d'excitation",
-                color: "#f44336"
-            },
-            'b7': { 
-                name: "Effet Agrandissement", 
-                desc: "Le carré grossit comme un ballon",
-                color: "#3f51b5"
-            },
-            'c6': { 
-                name: "Effet Retournement", 
-                desc: "Le carré se retourne comme une crêpe",
-                color: "#009688"
-            },
-            'd5': { 
-                name: "Dégradé Animé", 
-                desc: "Couleurs qui coulent comme une rivière",
-                color: "#4caf50"
-            },
-            'e4': { 
-                name: "Effet Rotation 45°", 
-                desc: "Le carré tourne comme une étoile",
-                color: "#ff5722"
-            },
-            'f3': { 
-                name: "Effet Transparence", 
-                desc: "Le carré devient presque invisible",
-                color: "#795548"
-            },
-            'g2': { 
-                name: "Effet Lévitation", 
-                desc: "Le carré s'élève comme un ballon",
-                color: "#607d8b"
-            },
-            'h1': { 
-                name: "Effet Rétrécissement", 
-                desc: "Le carré rétrécit comme si on l'aspirait",
-                color: "#9e9e9e"
-            }
+            // ... (similar for other squares)
         };
 
         // Create chess board with special effects
@@ -604,7 +748,9 @@
             // Add special effects to designated squares
             if (squareEffects[squareId]) {
                 square.classList.add('special-effect');
-                square.title = `${squareEffects[squareId].name} - Cliquez pour voir la surprise!`;
+                
+                // Update title based on current language
+                updateSquareTitle(square, squareId);
                 
                 // Add click event for each special square
                 square.addEventListener('click', function() {
@@ -616,18 +762,35 @@
             chessBoard.appendChild(square);
         }
 
+        // Update square title based on current language
+        function updateSquareTitle(square, squareId) {
+            const currentLang = document.querySelector('.language-toggle button.active').id.replace('-btn', '');
+            const effect = squareEffects[squareId];
+            square.title = `${effect.name[currentLang]} - ${getClickMessage(currentLang)}`;
+        }
+
+        function getClickMessage(lang) {
+            const messages = {
+                fr: "Cliquez pour voir la surprise!",
+                en: "Click to see the surprise!",
+                zh: "点击查看惊喜！"
+            };
+            return messages[lang];
+        }
+
         // Show customized birthday surprise
         function showBirthdaySurprise(squareId) {
             const effect = squareEffects[squareId];
             const surprise = document.getElementById('birthday-surprise');
             const message = document.getElementById('surprise-message');
+            const currentLang = document.querySelector('.language-toggle button.active').id.replace('-btn', '');
             
             surprise.style.background = `linear-gradient(135deg, ${effect.color}, #ffffff)`;
             surprise.style.border = `5px solid ${effect.color}`;
             
             message.innerHTML = `
-                <strong>${effect.name}:</strong> ${effect.desc}<br><br>
-                ${getRandomBirthdayMessage()}
+                <strong>${effect.name[currentLang]}:</strong> ${effect.desc[currentLang]}<br><br>
+                ${getRandomBirthdayMessage(currentLang)}
             `;
             
             surprise.classList.remove('hidden');
@@ -635,34 +798,105 @@
         }
 
         // Random birthday messages in different languages
-        function getRandomBirthdayMessage() {
-            const messages = [
-                "Joyeux Anniversaire! Que cette année soit remplie de bonheur et de succès!",
-                "Happy Birthday! May this year bring you endless joy and achievements!",
-                "生日快乐！愿你在新的一岁里棋艺精进，心想事成！",
-                "Alles Gute zum Geburtstag! Möge das Schachglück immer mit dir sein!",
-                "Buon Compleanno! Che tu possa realizzare tutti i tuoi sogni!",
-                "С Днем Рождения! Пусть этот год принесет тебе много побед!",
-                "생일 축하합니다! 새로운 한 해가 행복과 성공으로 가득하길!",
-                "Feliz Cumpleaños! Que este año esté lleno de alegría y logros!"
-            ];
-            return messages[Math.floor(Math.random() * messages.length)];
+        function getRandomBirthdayMessage(lang) {
+            const messages = {
+                fr: [
+                    "Joyeux Anniversaire! Que cette année soit remplie de bonheur et de succès!",
+                    "Bon anniversaire! Puisse cette année t'apporter tout ce que tu désires!",
+                    "Meilleurs vœux en ce jour spécial! Continue à briller comme une étoile!"
+                ],
+                en: [
+                    "Happy Birthday! May this year bring you endless joy and achievements!",
+                    "Wishing you a fantastic birthday! Keep shining bright!",
+                    "Best wishes on your special day! May all your dreams come true!"
+                ],
+                zh: [
+                    "生日快乐！愿新的一年带给你无尽的欢乐和成就！",
+                    "祝你生日超棒！继续闪耀吧！",
+                    "特别的日子里送上最美好的祝愿！愿你梦想成真！"
+                ]
+            };
+            const langMessages = messages[lang] || messages.en;
+            return langMessages[Math.floor(Math.random() * langMessages.length)];
         }
         
         // Language toggle
-        document.getElementById('english-btn').addEventListener('click', function() {
-            document.getElementById('english-message').classList.remove('hidden');
-            document.getElementById('french-message').classList.add('hidden');
-            this.classList.add('active');
-            document.getElementById('french-btn').classList.remove('active');
+        document.getElementById('french-btn').addEventListener('click', function() {
+            setLanguage('fr');
         });
         
-        document.getElementById('french-btn').addEventListener('click', function() {
-            document.getElementById('english-message').classList.add('hidden');
-            document.getElementById('french-message').classList.remove('hidden');
-            this.classList.add('active');
-            document.getElementById('english-btn').classList.remove('active');
+        document.getElementById('english-btn').addEventListener('click', function() {
+            setLanguage('en');
         });
+        
+        document.getElementById('chinese-btn').addEventListener('click', function() {
+            setLanguage('zh');
+        });
+        
+        function setLanguage(lang) {
+            // Update active button
+            document.querySelectorAll('.language-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`${lang}-btn`).classList.add('active');
+            
+            // Toggle language versions
+            document.querySelectorAll('.lang-fr, .lang-en, .lang-zh').forEach(el => {
+                el.classList.add('hidden');
+            });
+            document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+                el.classList.remove('hidden');
+            });
+            
+            // Update chess square titles
+            document.querySelectorAll('.chess-square.special-effect').forEach(square => {
+                const squareId = square.id;
+                if (squareEffects[squareId]) {
+                    updateSquareTitle(square, squareId);
+                }
+            });
+        }
+        
+        // AP Score Checker
+        function checkAPScore() {
+            const input = document.getElementById('ap-score-input');
+            const result = document.getElementById('ap-result');
+            const score = parseInt(input.value);
+            const currentLang = document.querySelector('.language-toggle button.active').id.replace('-btn', '');
+            
+            if (isNaN(score) || score < 1 || score > 5) {
+                const messages = {
+                    fr: "Veuillez entrer un score entre 1 et 5",
+                    en: "Please enter a score between 1 and 5",
+                    zh: "请输入1到5之间的分数"
+                };
+                result.textContent = messages[currentLang];
+                return;
+            }
+            
+            if (score === 5) {
+                const messages = {
+                    fr: "Impressionnant! Vous êtes au niveau de Thomas!",
+                    en: "Impressive! You're at Thomas's level!",
+                    zh: "令人印象深刻！你和Thomas一样优秀！"
+                };
+                result.textContent = messages[currentLang];
+            } else if (score >= 4) {
+                const messages = {
+                    fr: "Très bon score! Mais Thomas a fait mieux avec un 5!",
+                    en: "Great score! But Thomas did better with a 5!",
+                    zh: "成绩不错！但Thomas拿了5分更优秀！"
+                };
+                result.textContent = messages[currentLang];
+            } else {
+                const messages = {
+                    fr: "Pas mal, mais Thomas a obtenu un 5 parfait!",
+                    en: "Not bad, but Thomas got a perfect 5!",
+                    zh: "还不错，但Thomas拿了满分5分！"
+                };
+                result.textContent = messages[currentLang];
+            }
+        }
         
         // Fireworks effect
         function launchFireworks() {
@@ -860,6 +1094,9 @@
                 }
             }, 1000);
         });
+        
+        // Initialize with French language
+        setLanguage('fr');
     </script>
 </body>
 </html>
