@@ -14,6 +14,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="gold" opacity="0.7"/></svg>') 12 12, auto;
         }
         
         @keyframes gradientBG {
@@ -324,7 +325,7 @@
         .ap-score {
             font-size: 2em;
             font-weight: bold;
-            color: #4CAF50;
+            color: white;
             margin: 10px 0;
         }
         
@@ -459,6 +460,20 @@
         .f3:hover { opacity: 0.7; }
         .g2:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .h1:hover { transform: scale(0.9); }
+        
+        /* Golden Sparkle Trail Effect */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, gold 20%, rgba(255,215,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            opacity: 0.7;
+            filter: blur(1px);
+        }
         
         @media (max-width: 768px) {
             .chess-board {
@@ -731,7 +746,188 @@
                 },
                 color: "#9c27b0"
             },
-            // ... (similar for other squares)
+            'c3': { 
+                name: {
+                    fr: "Effet Arc-en-ciel", 
+                    en: "Rainbow Effect",
+                    zh: "彩虹效果"
+                },
+                desc: {
+                    fr: "Le carré change de couleur comme un arc-en-ciel",
+                    en: "The square changes color like a rainbow",
+                    zh: "方块像彩虹一样变色"
+                },
+                color: "#00bcd4"
+            },
+            'd4': { 
+                name: {
+                    fr: "Effet Inclinaison", 
+                    en: "Skew Effect",
+                    zh: "倾斜效果"
+                },
+                desc: {
+                    fr: "Le carré s'incline de manière intéressante",
+                    en: "The square skews in an interesting way",
+                    zh: "方块以有趣的方式倾斜"
+                },
+                color: "#8bc34a"
+            },
+            'e5': { 
+                name: {
+                    fr: "Effet Lueur", 
+                    en: "Glow Effect",
+                    zh: "发光效果"
+                },
+                desc: {
+                    fr: "Le carré brille avec une lueur chaude",
+                    en: "The square glows with a warm light",
+                    zh: "方块发出温暖的光芒"
+                },
+                color: "#ff9800"
+            },
+            'f6': { 
+                name: {
+                    fr: "Effet Cercle", 
+                    en: "Circle Effect",
+                    zh: "圆形效果"
+                },
+                desc: {
+                    fr: "Le carré devient un cercle parfait",
+                    en: "The square becomes a perfect circle",
+                    zh: "方块变成完美的圆形"
+                },
+                color: "#e91e63"
+            },
+            'g7': { 
+                name: {
+                    fr: "Effet 3D", 
+                    en: "3D Effect",
+                    zh: "3D效果"
+                },
+                desc: {
+                    fr: "Le carré prend une perspective 3D",
+                    en: "The square gains 3D perspective",
+                    zh: "方块获得3D透视效果"
+                },
+                color: "#9c27b0"
+            },
+            'h8': { 
+                name: {
+                    fr: "Effet Rebond", 
+                    en: "Bounce Effect",
+                    zh: "弹跳效果"
+                },
+                desc: {
+                    fr: "Le carré rebondit comme une balle",
+                    en: "The square bounces like a ball",
+                    zh: "方块像球一样弹跳"
+                },
+                color: "#00bcd4"
+            },
+            'a8': { 
+                name: {
+                    fr: "Effet Secousse", 
+                    en: "Shake Effect",
+                    zh: "震动效果"
+                },
+                desc: {
+                    fr: "Le carré tremble comme lors d'un tremblement de terre",
+                    en: "The square shakes like an earthquake",
+                    zh: "方块像地震一样震动"
+                },
+                color: "#ff5722"
+            },
+            'b7': { 
+                name: {
+                    fr: "Effet Agrandissement", 
+                    en: "Scale Effect",
+                    zh: "缩放效果"
+                },
+                desc: {
+                    fr: "Le carré grandit comme par magie",
+                    en: "The square grows magically",
+                    zh: "方块神奇地变大"
+                },
+                color: "#8bc34a"
+            },
+            'c6': { 
+                name: {
+                    fr: "Effet Retournement", 
+                    en: "Flip Effect",
+                    zh: "翻转效果"
+                },
+                desc: {
+                    fr: "Le carré se retourne comme une pièce de monnaie",
+                    en: "The square flips like a coin",
+                    zh: "方块像硬币一样翻转"
+                },
+                color: "#9c27b0"
+            },
+            'd5': { 
+                name: {
+                    fr: "Effet Dégradé", 
+                    en: "Gradient Effect",
+                    zh: "渐变效果"
+                },
+                desc: {
+                    fr: "Le carré affiche un beau dégradé de couleurs",
+                    en: "The square shows a beautiful color gradient",
+                    zh: "方块显示美丽的颜色渐变"
+                },
+                color: "#00bcd4"
+            },
+            'e4': { 
+                name: {
+                    fr: "Effet Rotation 45°", 
+                    en: "45° Rotation Effect",
+                    zh: "45°旋转效果"
+                },
+                desc: {
+                    fr: "Le carré tourne à 45 degrés",
+                    en: "The square rotates 45 degrees",
+                    zh: "方块旋转45度"
+                },
+                color: "#ff9800"
+            },
+            'f3': { 
+                name: {
+                    fr: "Effet Transparence", 
+                    en: "Transparency Effect",
+                    zh: "透明效果"
+                },
+                desc: {
+                    fr: "Le carré devient partiellement transparent",
+                    en: "The square becomes partially transparent",
+                    zh: "方块变得部分透明"
+                },
+                color: "#e91e63"
+            },
+            'g2': { 
+                name: {
+                    fr: "Effet Lévitation", 
+                    en: "Levitation Effect",
+                    zh: "悬浮效果"
+                },
+                desc: {
+                    fr: "Le carré lévite avec une ombre portée",
+                    en: "The square levitates with a drop shadow",
+                    zh: "方块悬浮并有投影"
+                },
+                color: "#8bc34a"
+            },
+            'h1': { 
+                name: {
+                    fr: "Effet Rétrécissement", 
+                    en: "Shrink Effect",
+                    zh: "收缩效果"
+                },
+                desc: {
+                    fr: "Le carré rétrécit comme s'il était aspiré",
+                    en: "The square shrinks as if being sucked in",
+                    zh: "方块像被吸入一样收缩"
+                },
+                color: "#ff5722"
+            }
         };
 
         // Create chess board with special effects
@@ -1058,6 +1254,104 @@
                 }
             });
         }
+        
+        // Golden Sparkle Trail Effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.querySelector('body');
+            const colors = ['#FFD700', '#FFDF00', '#FFEC8B', '#FFFACD', '#FFD700'];
+            
+            // Create sparkles on mouse move
+            document.addEventListener('mousemove', function(e) {
+                // Create multiple sparkles for a richer effect
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        const sparkle = document.createElement('div');
+                        sparkle.className = 'sparkle';
+                        
+                        // Randomize size and position slightly
+                        const size = Math.random() * 8 + 4;
+                        const offsetX = (Math.random() - 0.5) * 20;
+                        const offsetY = (Math.random() - 0.5) * 20;
+                        
+                        sparkle.style.width = `${size}px`;
+                        sparkle.style.height = `${size}px`;
+                        sparkle.style.left = `${e.pageX + offsetX}px`;
+                        sparkle.style.top = `${e.pageY + offsetY}px`;
+                        sparkle.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]} 20%, rgba(255,215,0,0) 70%)`;
+                        
+                        body.appendChild(sparkle);
+                        
+                        // Animate sparkle
+                        const duration = Math.random() * 1000 + 500;
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = Math.random() * 50 + 20;
+                        
+                        const animation = sparkle.animate([
+                            { 
+                                transform: `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px) scale(1)`,
+                                opacity: 0.7 
+                            },
+                            { 
+                                transform: `translate(-50%, -50%) translate(${offsetX + Math.cos(angle) * distance}px, ${offsetY + Math.sin(angle) * distance}px) scale(0.2)`,
+                                opacity: 0 
+                            }
+                        ], {
+                            duration: duration,
+                            easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                        });
+                        
+                        animation.onfinish = () => {
+                            sparkle.remove();
+                        };
+                    }, i * 50);
+                }
+            });
+            
+            // Add extra sparkles when clicking
+            document.addEventListener('click', function(e) {
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        const sparkle = document.createElement('div');
+                        sparkle.className = 'sparkle';
+                        
+                        const size = Math.random() * 15 + 5;
+                        const offsetX = (Math.random() - 0.5) * 30;
+                        const offsetY = (Math.random() - 0.5) * 30;
+                        
+                        sparkle.style.width = `${size}px`;
+                        sparkle.style.height = `${size}px`;
+                        sparkle.style.left = `${e.pageX + offsetX}px`;
+                        sparkle.style.top = `${e.pageY + offsetY}px`;
+                        sparkle.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]} 30%, rgba(255,215,0,0) 70%)`;
+                        sparkle.style.filter = 'blur(2px)';
+                        
+                        body.appendChild(sparkle);
+                        
+                        const duration = Math.random() * 1000 + 500;
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = Math.random() * 100 + 50;
+                        
+                        const animation = sparkle.animate([
+                            { 
+                                transform: `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px) scale(1)`,
+                                opacity: 0.9 
+                            },
+                            { 
+                                transform: `translate(-50%, -50%) translate(${offsetX + Math.cos(angle) * distance}px, ${offsetY + Math.sin(angle) * distance}px) scale(0)`,
+                                opacity: 0 
+                            }
+                        ], {
+                            duration: duration,
+                            easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                        });
+                        
+                        animation.onfinish = () => {
+                            sparkle.remove();
+                        };
+                    }, i * 50);
+                }
+            });
+        });
         
         // Check if it's December 2nd
         const today = new Date();
