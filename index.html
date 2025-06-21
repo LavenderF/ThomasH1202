@@ -286,94 +286,33 @@
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
-        .ap-scores {
+
+        .tommy-genius {
             text-align: center;
             margin: 30px 0;
             padding: 20px;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #ff9800;
+            border-top: 5px solid #00bcd4;
         }
         
-        .ap-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .ap-card {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-        
-        .ap-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .ap-card h4 {
-            margin-top: 0;
-            color: #006064;
-        }
-        
-        .ap-score {
-            font-size: 2em;
-            font-weight: bold;
-            color: white;
-            margin: 10px 0;
-        }
-        
-        .ap-5 {
-            background: linear-gradient(135deg, #4CAF50, #8BC34A);
-            color: white;
-        }
-        
-        .ap-checker {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 235, 59, 0.2);
-            border-radius: 10px;
-        }
-        
-        .ap-checker input {
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            margin-right: 10px;
-        }
-        
-        .ap-checker button {
-            background: #ff9800;
-            color: white;
+        .tommy-genius iframe {
+            width: 100%;
+            height: 500px;
             border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
+            border-radius: 10px;
+            margin-top: 15px;
         }
         
-        .ap-checker button:hover {
-            background: #f57c00;
-        }
-        
-        .ap-result {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        
-        footer {
+        #birthday-surprise {
             text-align: center;
+            margin: 30px 0;
             padding: 20px;
-            margin-top: 40px;
-            border-top: 2px dashed #ff5722;
-            font-size: 0.9em;
-            color: #e91e63;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #ff9800;
         }
         
         /* Special square effects */
@@ -493,12 +432,9 @@
                 height: 150px;
             }
             
-            .tommy-awesome iframe {
+            .tommy-awesome iframe,
+            .tommy-genius iframe {
                 height: 300px;
-            }
-            
-            .ap-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -534,19 +470,19 @@
             <div id="french-message">
                 <h2>À un Ami Exceptionnel</h2>
                 <p>En ce jour spécial, je te souhaite des victoires sans fin sur l'échiquier, des voyages inspirants à travers la littérature et la réalisation de tous tes rêves.</p>
-                <p>Puisse ton année être aussi grandiose que tes résultats AP, aussi profonde que les romans de Dumas et aussi électrisante que les beats d'Avicii.</p>
+                <p>Puisse ton année être aussi grandiose que tes résultats, aussi profonde que les romans de Dumas et aussi électrisante que les beats d'Avicii.</p>
                 <p>Joyeux Anniversaire!</p>
             </div>
             <div id="english-message" class="hidden">
                 <h2>To an Exceptional Friend</h2>
                 <p>On this special day, I wish you endless victories on the chessboard, inspiring journeys through literature, and the realization of all your dreams.</p>
-                <p>May your year be as grand as your AP scores, as profound as Dumas' novels, and as electrifying as Avicii's beats.</p>
+                <p>May your year be as grand as your achievements, as profound as Dumas' novels, and as electrifying as Avicii's beats.</p>
                 <p>Happy Birthday!</p>
             </div>
             <div id="chinese-message" class="hidden">
                 <h2>致非凡的朋友</h2>
                 <p>在这个特别的日子里，祝你在国际象棋棋盘上取得无尽胜利，在文学之旅中获得启发，并实现所有梦想。</p>
-                <p>愿你新的一年如你的AP成绩一样辉煌，如大仲马的小说一样深邃，如Avicii的节拍一样令人振奋。</p>
+                <p>愿你新的一年如你的成就一样辉煌，如大仲马的小说一样深邃，如Avicii的节拍一样令人振奋。</p>
                 <p>生日快乐！</p>
             </div>
         </div>
@@ -558,64 +494,6 @@
             <p>"Ce qui est fait est fait"</p>
             <p>"Toute la sagesse humaine sera dans ces deux mots: Attendre et Espérer"</p>
             <p>- Alexandre Dumas, Le Comte de Monte-Cristo</p>
-        </div>
-        
-        <div class="ap-scores">
-            <h3 class="lang-fr">Les Résultats Exceptionnels d'AP de Thomas</h3>
-            <h3 class="lang-en hidden">Thomas's Outstanding AP Scores</h3>
-            <h3 class="lang-zh hidden">Thomas出色的AP成绩</h3>
-            
-            <div class="ap-grid">
-                <div class="ap-card ap-5">
-                    <h4 class="lang-fr">Histoire Mondiale</h4>
-                    <h4 class="lang-en hidden">World History</h4>
-                    <h4 class="lang-zh hidden">世界历史</h4>
-                    <div class="ap-score">5</div>
-                    <p class="lang-fr">Score parfait!</p>
-                    <p class="lang-en hidden">Perfect score!</p>
-                    <p class="lang-zh hidden">满分成绩！</p>
-                </div>
-                <div class="ap-card ap-5">
-                    <h4 class="lang-fr">Langue et Culture Françaises</h4>
-                    <h4 class="lang-en hidden">French Language & Culture</h4>
-                    <h4 class="lang-zh hidden">法语语言与文化</h4>
-                    <div class="ap-score">5</div>
-                    <p class="lang-fr">Exceptionnel!</p>
-                    <p class="lang-en hidden">Exceptional!</p>
-                    <p class="lang-zh hidden">非常出色！</p>
-                </div>
-                <div class="ap-card ap-5">
-                    <h4 class="lang-fr">Langue Anglaise</h4>
-                    <h4 class="lang-en hidden">English Language</h4>
-                    <h4 class="lang-zh hidden">英语语言</h4>
-                    <div class="ap-score">5</div>
-                    <p class="lang-fr">Brillant!</p>
-                    <p class="lang-en hidden">Brilliant!</p>
-                    <p class="lang-zh hidden">才华横溢！</p>
-                </div>
-                <div class="ap-card ap-5">
-                    <h4 class="lang-fr">Calcul BC</h4>
-                    <h4 class="lang-en hidden">Calculus BC</h4>
-                    <h4 class="lang-zh hidden">微积分BC</h4>
-                    <div class="ap-score">5</div>
-                    <p class="lang-fr">Génie mathématique!</p>
-                    <p class="lang-en hidden">Math genius!</p>
-                    <p class="lang-zh hidden">数学天才！</p>
-                </div>
-            </div>
-            
-            <div class="ap-checker">
-                <h4 class="lang-fr">Vérifiez vos propres résultats AP</h4>
-                <h4 class="lang-en hidden">Check your own AP scores</h4>
-                <h4 class="lang-zh hidden">查询你的AP成绩</h4>
-                <div>
-                    <input type="number" id="ap-score-input" min="1" max="5" placeholder="5">
-                    <button onclick="checkAPScore()" class="lang-fr">Vérifier</button>
-                    <button onclick="checkAPScore()" class="lang-en hidden">Check</button>
-                    <button onclick="checkAPScore()" class="lang-zh hidden">查询</button>
-                </div>
-                <div class="ap-result" id="ap-result"></div>
-            </div>
         </div>
         
         <div class="music-player">
@@ -675,6 +553,21 @@
             <p class="lang-zh hidden">探索这个专为Thomas创建的互动网站，充满惊喜和创意！</p>
             <iframe src="https://lavenderf.github.io/tommyawesome/" title="Tommy Awesome Interactive Site"></iframe>
             <a href="https://lavenderf.github.io/tommyawesome/" class="tommy-awesome-btn" target="_blank">
+                <span class="lang-fr">Visiter le Site Complet</span>
+                <span class="lang-en hidden">Visit Full Site</span>
+                <span class="lang-zh hidden">访问完整网站</span>
+            </a>
+        </div>
+
+        <div class="tommy-genius">
+            <h3 class="lang-fr">Découvrez Tommy Genius</h3>
+            <h3 class="lang-en hidden">Discover Tommy Genius</h3>
+            <h3 class="lang-zh hidden">探索Tommy Genius</h3>
+            <p class="lang-fr">Un autre site incroyable dédié au génie de Thomas!</p>
+            <p class="lang-en hidden">Another amazing site dedicated to Thomas's genius!</p>
+            <p class="lang-zh hidden">另一个献给Thomas天才的精彩网站！</p>
+            <iframe src="https://lavenderf.github.io/tommygenius/" title="Tommy Genius Interactive Site"></iframe>
+            <a href="https://lavenderf.github.io/tommygenius/" class="tommy-awesome-btn" target="_blank">
                 <span class="lang-fr">Visiter le Site Complet</span>
                 <span class="lang-en hidden">Visit Full Site</span>
                 <span class="lang-zh hidden">访问完整网站</span>
@@ -1051,47 +944,6 @@
                     updateSquareTitle(square, squareId);
                 }
             });
-        }
-        
-        // AP Score Checker
-        function checkAPScore() {
-            const input = document.getElementById('ap-score-input');
-            const result = document.getElementById('ap-result');
-            const score = parseInt(input.value);
-            const currentLang = document.querySelector('.language-toggle button.active').id.replace('-btn', '');
-            
-            if (isNaN(score) || score < 1 || score > 5) {
-                const messages = {
-                    fr: "Veuillez entrer un score entre 1 et 5",
-                    en: "Please enter a score between 1 and 5",
-                    zh: "请输入1到5之间的分数"
-                };
-                result.textContent = messages[currentLang];
-                return;
-            }
-            
-            if (score === 5) {
-                const messages = {
-                    fr: "Impressionnant! Vous êtes au niveau de Thomas!",
-                    en: "Impressive! You're at Thomas's level!",
-                    zh: "令人印象深刻！你和Thomas一样优秀！"
-                };
-                result.textContent = messages[currentLang];
-            } else if (score >= 4) {
-                const messages = {
-                    fr: "Très bon score! Mais Thomas a fait mieux avec un 5!",
-                    en: "Great score! But Thomas did better with a 5!",
-                    zh: "成绩不错！但Thomas拿了5分更优秀！"
-                };
-                result.textContent = messages[currentLang];
-            } else {
-                const messages = {
-                    fr: "Pas mal, mais Thomas a obtenu un 5 parfait!",
-                    en: "Not bad, but Thomas got a perfect 5!",
-                    zh: "还不错，但Thomas拿了满分5分！"
-                };
-                result.textContent = messages[currentLang];
-            }
         }
         
         // Fireworks effect
