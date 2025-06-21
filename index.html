@@ -412,6 +412,50 @@
             opacity: 0.7;
             filter: blur(1px);
         }
+
+        /* Barrage (scrolling messages) styles */
+        .barrage-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+        
+        .barrage-item {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            animation: barrage linear;
+            animation-fill-mode: forwards;
+            padding: 5px 10px;
+            border-radius: 20px;
+            opacity: 0.8;
+            transform: translateX(100vw);
+        }
+        
+        @keyframes barrage {
+            to {
+                transform: translateX(-100%);
+            }
+        }
+        
+        /* Different color barrages */
+        .barrage-color-1 { color: #FF5252; }
+        .barrage-color-2 { color: #FF4081; }
+        .barrage-color-3 { color: #E040FB; }
+        .barrage-color-4 { color: #7C4DFF; }
+        .barrage-color-5 { color: #536DFE; }
+        .barrage-color-6 { color: #448AFF; }
+        .barrage-color-7 { color: #40C4FF; }
+        .barrage-color-8 { color: #18FFFF; }
+        .barrage-color-9 { color: #64FFDA; }
+        .barrage-color-10 { color: #69F0AE; }
         
         @media (max-width: 768px) {
             .chess-board {
@@ -444,10 +488,17 @@
             .tommy-genius iframe {
                 height: 300px;
             }
+
+            .barrage-item {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Barrage container for scrolling messages -->
+    <div class="barrage-container" id="barrage-container"></div>
+    
     <canvas id="fireworks-canvas"></canvas>
     
     <div class="container">
@@ -1175,6 +1226,124 @@
                     }, i * 50);
                 }
             });
+        });
+
+        // Barrage (scrolling messages) functionality
+        const birthdayWishes = [
+            // European languages
+            {text: "Happy Birthday Thomas!", lang: "English"},
+            {text: "Joyeux Anniversaire Thomas!", lang: "French"},
+            {text: "Alles Gute zum Geburtstag Thomas!", lang: "German"},
+            {text: "Buon Compleanno Thomas!", lang: "Italian"},
+            {text: "¡Feliz Cumpleaños Thomas!", lang: "Spanish"},
+            {text: "Feliz Aniversário Thomas!", lang: "Portuguese"},
+            {text: "Gelukkige Verjaardag Thomas!", lang: "Dutch"},
+            {text: "Grattis på födelsedagen Thomas!", lang: "Swedish"},
+            {text: "Tillykke med fødselsdagen Thomas!", lang: "Danish"},
+            {text: "Hyvää syntymäpäivää Thomas!", lang: "Finnish"},
+            {text: "Gratulerer med dagen Thomas!", lang: "Norwegian"},
+            {text: "Všechno nejlepší k narozeninám Thomas!", lang: "Czech"},
+            {text: "Wszystkiego najlepszego z okazji urodzin Thomas!", lang: "Polish"},
+            {text: "Boldog születésnapot Thomas!", lang: "Hungarian"},
+            {text: "La mulți ani Thomas!", lang: "Romanian"},
+            {text: "С днем рождения Томас!", lang: "Russian"},
+            
+            // Asian languages
+            {text: "生日快乐 Thomas!", lang: "Chinese (Simplified)"},
+            {text: "生日快樂 Thomas!", lang: "Chinese (Traditional)"},
+            {text: "お誕生日おめでとう Thomas!", lang: "Japanese"},
+            {text: "생일 축하해요 Thomas!", lang: "Korean"},
+            {text: "สุขสันต์วันเกิด Thomas!", lang: "Thai"},
+            {text: "Chúc mừng sinh nhật Thomas!", lang: "Vietnamese"},
+            {text: "Selamat ulang tahun Thomas!", lang: "Indonesian/Malay"},
+            {text: "जन्मदिन मुबारक हो Thomas!", lang: "Hindi"},
+            {text: "பிறந்தநாள் வாழ்த்துக்கள் Thomas!", lang: "Tamil"},
+            {text: "ജന്മദിനാശംസകൾ Thomas!", lang: "Malayalam"},
+            
+            // Other languages
+            {text: "Doğum günün kutlu olsun Thomas!", lang: "Turkish"},
+            {text: "عيد ميلاد سعيد توماس!", lang: "Arabic"},
+            {text: "יום הולדת שמח תומאס!", lang: "Hebrew"},
+            {text: "Շնորհավոր ծննդյան օր Թոմաս!", lang: "Armenian"},
+            {text: "გილოცავ დაბადების დღეს თომას!", lang: "Georgian"},
+            {text: "생일 축하합니다 Thomas!", lang: "Korean (formal)"},
+            {text: "お誕生日おめでとうございます Thomas!", lang: "Japanese (formal)"},
+            {text: "สุขสันต์วันเกิดครับ Thomas!", lang: "Thai (male speaker)"},
+            {text: "สุขสันต์วันเกิดค่ะ Thomas!", lang: "Thai (female speaker)"},
+            
+            // Creative wishes
+            {text: "🎂 Happy Birthday Thomas! 🎉", lang: "English (with emoji)"},
+            {text: "🎈 Joyeux Anniversaire Thomas! 🎁", lang: "French (with emoji)"},
+            {text: "🎊 生日快乐 Thomas! 🎇", lang: "Chinese (with emoji)"},
+            {text: "🌟 Alles Gute zum Geburtstag Thomas! ⭐", lang: "German (with emoji)"},
+            {text: "🍰 Buon Compleanno Thomas! 🎀", lang: "Italian (with emoji)"},
+            {text: "🥳 ¡Feliz Cumpleaños Thomas! 🎆", lang: "Spanish (with emoji)"},
+            {text: "🎆 Feliz Aniversário Thomas! 🍾", lang: "Portuguese (with emoji)"},
+            {text: "🎇 お誕生日おめでとう Thomas! 🎑", lang: "Japanese (with emoji)"},
+            {text: "🎉 생일 축하해요 Thomas! 🎮", lang: "Korean (with emoji)"},
+            {text: "🎋 สุขสันต์วันเกิด Thomas! 🎎", lang: "Thai (with emoji)"},
+            
+            // Special character wishes
+            {text: "≽^•⩊•^≼ Happy Birthday Thomas! ≽^•⩊•^≼", lang: "English (kawaii)"},
+            {text: "✧･ﾟ: *✧･ﾟ:* Joyeux Anniversaire Thomas! *:･ﾟ✧*:･ﾟ✧", lang: "French (sparkly)"},
+            {text: "☆*:.｡.o(≧▽≦)o.｡.:*☆ 生日快乐 Thomas! ☆*:.｡.o(≧▽≦)o.｡.:*☆", lang: "Chinese (kawaii)"},
+            {text: "♪♪ ヽ(ˇ∀ˇ )ゞ Alles Gute Thomas! ヽ(ˇ∀ˇ )ゞ ♪♪", lang: "German (dancing)"},
+            {text: "♫ Buon Compleanno ♪ Thomas! ♪ ♫", lang: "Italian (musical)"},
+            {text: "✿◕ ‿ ◕✿ ¡Feliz Cumpleaños! ✿◕ ‿ ◕✿ Thomas", lang: "Spanish (cute)"},
+            {text: "(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ Feliz Aniversário Thomas! ✧ﾟ･: *ヽ(◕ヮ◕ヽ)", lang: "Portuguese (magical)"},
+            {text: "ヽ(•̀ω•́ )ゝ✧ お誕生日おめでとう Thomas! ✧ヽ(•̀ω•́ )ゝ", lang: "Japanese (energetic)"},
+            {text: "٩(◕‿◕｡)۶ 생일 축하해요 Thomas! ٩(｡◕‿◕｡)۶", lang: "Korean (cute)"},
+            {text: "(づ｡◕‿‿◕｡)づ สุขสันต์วันเกิด Thomas! (づ｡◕‿‿◕｡)づ", lang: "Thai (hugging)"}
+        ];
+
+        function createBarrage() {
+            const container = document.getElementById('barrage-container');
+            if (!container) return;
+            
+            const barrageItem = document.createElement('div');
+            barrageItem.className = 'barrage-item';
+            
+            // Random wish
+            const wish = birthdayWishes[Math.floor(Math.random() * birthdayWishes.length)];
+            barrageItem.textContent = wish.text;
+            
+            // Random color
+            const colorClass = `barrage-color-${Math.floor(Math.random() * 10) + 1}`;
+            barrageItem.classList.add(colorClass);
+            
+            // Random position (0 to 80% of viewport height)
+            const top = Math.random() * 80;
+            barrageItem.style.top = `${top}%`;
+            
+            // Random speed (10-20 seconds to complete animation)
+            const duration = 10 + Math.random() * 10;
+            barrageItem.style.animationDuration = `${duration}s`;
+            
+            // Random font size
+            const fontSize = 16 + Math.random() * 12;
+            barrageItem.style.fontSize = `${fontSize}px`;
+            
+            container.appendChild(barrageItem);
+            
+            // Remove element after animation ends
+            barrageItem.addEventListener('animationend', function() {
+                barrageItem.remove();
+            });
+        }
+        
+        function startBarrage() {
+            // Initial barrage
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createBarrage, i * 800);
+            }
+            
+            // Continuous barrage
+            setInterval(createBarrage, 1500);
+        }
+        
+        // Start barrage after page loads
+        window.addEventListener('load', function() {
+            setTimeout(startBarrage, 2000); // Delay to let other animations start first
         });
         
         // Check if it's December 2nd
